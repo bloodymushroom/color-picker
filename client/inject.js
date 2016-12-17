@@ -28,9 +28,12 @@ var colorHandler = function(req, sender, res){
     console.log('req', req.currentColors)
     var colors = req.currentColors;
 
-    for (var i = 0; i < divs.length; i+=4) {
+    for (var i = 0; i < divs.length; i++) {
       var currentKey = 'color' + (i % 5 + 1);
-      divs[i].style['background-color'] = colors[currentKey].hex;
+      if (divs[i].clientWidth * divs[i].clientHeight > 80000){
+        console.log('updated?', divs[i])
+        divs[i].style['background-color'] = colors[currentKey].hex;
+      }
     }
 
     return 'Hello' + divs.length;   
